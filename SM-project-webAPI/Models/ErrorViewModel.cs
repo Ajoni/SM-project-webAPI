@@ -1,6 +1,6 @@
 using System;
 
-namespace SM_project_webAPI.Models
+namespace SMprojectWebAPI.Models
 {
     public class ErrorViewModel
     {

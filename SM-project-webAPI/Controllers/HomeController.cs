@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using SM_project_webAPI.Models;
+using SMprojectWebAPI.Models;
 
-namespace SM_project_webAPI.Controllers
+namespace SMprojectWebAPI.Controllers
 {
     public class HomeController : Controller
     {

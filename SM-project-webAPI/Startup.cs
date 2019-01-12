@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -7,10 +8,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SMprojectWebAPI.Data;
 
-namespace SM_project_webAPI
+namespace SMprojectWebAPI
 {
     public class Startup
     {
@@ -31,6 +34,9 @@ namespace SM_project_webAPI
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            var connection = @"Server=(localdb)\mssqllocaldb;Database=EFGetStarted.AspNetCore.NewDb;Trusted_Connection=True;ConnectRetryCount=0";
+            services.AddDbContext<ApplicationDbContext>
+                (options => options.UseSqlServer(connection));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -47,6 +53,10 @@ namespace SM_project_webAPI
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+            
+            var cultureInfo = new CultureInfo("en-US");
+            CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+            CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
