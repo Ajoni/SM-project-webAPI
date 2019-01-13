@@ -20,12 +20,12 @@ namespace SMprojectWebAPI.Controllers
 
 
         [HttpGet]
-        [Route("users")]
-        public IActionResult GetShoes()
+        [Route("all-users")]
+        public IActionResult GetUsers()
         {
             try
             {
-                var results = _context.Shoes.ToList();
+                var results = _context.Users.ToList();
                 return Ok(new { results });
             }
             catch (Exception)

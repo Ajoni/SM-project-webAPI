@@ -21,7 +21,7 @@ namespace SMprojectWebAPI.Controllers
         }
 
         [HttpGet]
-        [Route("shoes")]
+        [Route("all-shoes")]
         public IActionResult GetShoes()
         {
             try
