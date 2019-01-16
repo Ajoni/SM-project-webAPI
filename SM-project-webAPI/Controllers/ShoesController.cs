@@ -35,6 +35,27 @@ namespace SMprojectWebAPI.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("all-types")]
+        public IActionResult GetTypes()
+        {
+            try
+            {
+                List<String> results = new List<string>();
+                var shoes = _context.Shoes.ToList();
+                foreach(var shoe in shoes)
+                {
+                    if (!results.Any(r => r == shoe.Type))
+                        results.Add(shoe.Type);
+                }
+                return Ok(results);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
         // GET: Shoes
         public async Task<IActionResult> Index()
         {
